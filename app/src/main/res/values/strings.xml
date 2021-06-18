@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">My Library</string>
+    <string name="hint_name">Name...</string>
+    <string name="hint_writer">Writer...</string>
+    <string name="hint_id">ID...</string>
+    <string name="button_save">Save</string>
+    <string name="empty_not_saved">Libro not saved because it is empty.</string>
+    <string name="add_word">Add word</string>
+</resources>
