@@ -70,6 +70,7 @@
             android:id="@+id/btnDelete"
             android:layout_width="30dp"
             android:layout_height="25dp"
+            android:clickable="true"
             android:background="@android:color/holo_red_dark" />
     </LinearLayout>
 

@@ -20,7 +20,7 @@ class LibroRepository(private val libroDao: LibroDao) {
         libroDao.insert(libro)
     }
 
-    suspend fun delete(id: String){
-        libroDao.deleteOne(id)
+    suspend fun delete(writer: String){
+        libroDao.deleteOne(writer)
     }
 }

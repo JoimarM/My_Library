@@ -1,7 +1,9 @@
 package com.example.roomdbapp
 
+import android.view.View
+
 interface BookListener {
 
-    fun onDelete(item: Libro, position:Int)
+    fun onDelete(vista: View, position:Int,writer:String)
 
 }

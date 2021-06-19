@@ -5,6 +5,7 @@ import android.app.AlertDialog
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import android.widget.Button
 import android.widget.Toast
 import androidx.activity.viewModels
@@ -26,8 +27,15 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         val recyclerView = findViewById<RecyclerView>(R.id.recyclerview)
-        val adapter = BookListAdapter()
+        val adapter = BookListAdapter(object : BookListener{
+            override fun onDelete(vista: View, position: Int, writer: String) {
+            libroViewModel.delete(writer)
+                Toast.makeText(applicationContext,"Se ha eliminado ${writer} ",Toast.LENGTH_LONG).show()
+            }
+
+        })
         recyclerView.adapter = adapter
+
         recyclerView.layoutManager = LinearLayoutManager(this)
 
         // Add an observer on the LiveData returned by getAlphabetizedWords.
@@ -44,7 +52,7 @@ class MainActivity : AppCompatActivity() {
             startActivityForResult(intent, newBookActivityRequestCode)
         }
 
-        libroViewModel.delete(adapter.libroId)
+
 
 
     }

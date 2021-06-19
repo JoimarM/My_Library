@@ -14,8 +14,8 @@ abstract class LibroDao{
     @Query("DELETE FROM libro_table")
     abstract suspend fun deleteAll()
 
-    @Query("DELETE FROM libro_table WHERE Id = :id")
-    abstract suspend fun deleteOne(id: String)
+    @Query("DELETE FROM libro_table WHERE nombre = :writer")
+    abstract suspend fun deleteOne(writer: String)
 
 
 }
