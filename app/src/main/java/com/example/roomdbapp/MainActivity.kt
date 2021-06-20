@@ -5,6 +5,7 @@ import android.app.AlertDialog
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.Button
 import android.widget.Toast
@@ -15,7 +16,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import java.text.FieldPosition
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(), BookListener {
 
     private val newBookActivityRequestCode = 1
     private val libroViewModel: LibroViewModel by viewModels {
@@ -27,10 +28,18 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         val recyclerView = findViewById<RecyclerView>(R.id.recyclerview)
-        val adapter = BookListAdapter(object : BookListener{
+        val adapter = BookListAdapter(object : BookListener {
             override fun onDelete(vista: View, position: Int, writer: String) {
-            libroViewModel.delete(writer)
-                Toast.makeText(applicationContext,"Se ha eliminado ${writer} ",Toast.LENGTH_LONG).show()
+                libroViewModel.delete(writer)
+                Toast.makeText(applicationContext, "Se ha eliminado ${writer} ", Toast.LENGTH_LONG)
+                    .show()
+            }
+
+            override fun onEdit(vista: View, position: Int, libro: Libro) {
+                /* val intentX = Intent(applicationContext, EditBookActivity::class.java)
+                 intentX.putExtra("EXTRA_LIBRO", Libro(libro.nombre, libro.escritor, libro.id))
+                 startActivity(intentX) */
+
             }
 
         })
@@ -53,8 +62,6 @@ class MainActivity : AppCompatActivity() {
         }
 
 
-
-
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
@@ -70,6 +77,16 @@ class MainActivity : AppCompatActivity() {
         }
         val libro = Libro(name, writer, id)
         libroViewModel.insert(libro)
+    }
+
+    override fun onDelete(vista: View, position: Int, name: String) {
+        TODO("Not yet implemented")
+    }
+
+    override fun onEdit(vista: View, position: Int, libro: Libro) {
+        val intentX = Intent(applicationContext, EditBookActivity::class.java)
+        intentX.putExtra("EXTRA_LIBRO", Libro(libro.nombre, libro.escritor, libro.id))
+        startActivity(intentX)
     }
 
 

@@ -23,4 +23,9 @@ class LibroRepository(private val libroDao: LibroDao) {
     suspend fun delete(writer: String){
         libroDao.deleteOne(writer)
     }
+
+    suspend fun edit(libro: Libro){
+        libroDao.updateBook(libro)
+    }
+
 }

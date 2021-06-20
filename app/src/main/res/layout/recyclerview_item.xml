@@ -67,11 +67,22 @@
         android:orientation="vertical">
 
         <Button
+            android:id="@+id/btnEdit"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:background="@drawable/btn_edit"
+            android:clickable="true" />
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="30dp" />
+
+        <Button
             android:id="@+id/btnDelete"
             android:layout_width="30dp"
             android:layout_height="25dp"
-            android:clickable="true"
-            android:background="@android:color/holo_red_dark" />
+            android:background="@drawable/btn_delete"
+            android:clickable="true" />
     </LinearLayout>
 
 

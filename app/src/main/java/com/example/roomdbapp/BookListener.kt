@@ -4,6 +4,8 @@ import android.view.View
 
 interface BookListener {
 
-    fun onDelete(vista: View, position:Int,writer:String)
+    fun onDelete(vista: View, position:Int,name:String)
+
+    fun onEdit(vista:View, position: Int, libro: Libro)
 
 }

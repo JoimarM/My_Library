@@ -17,5 +17,8 @@ abstract class LibroDao{
     @Query("DELETE FROM libro_table WHERE nombre = :writer")
     abstract suspend fun deleteOne(writer: String)
 
+    @Update
+    abstract suspend fun updateBook(libro: Libro)
+
 
 }

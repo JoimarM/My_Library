@@ -24,38 +24,39 @@ class BookListAdapter(var listener: BookListener) :
         val current = getItem(position)
         holder.bind(current, listener)
         val libroViewHolder: LibroViewHolder? = null
-        libroViewHolder?.getLibro(current.id)
     }
 
 
     class LibroViewHolder(itemView: View, listener: BookListener) :
         RecyclerView.ViewHolder(itemView), View.OnClickListener {
         var libroName: String = ""
+        var libroEdit: Libro = Libro("","","")
 
         private val libroItemViewName: TextView = itemView.findViewById(R.id.textName)
         private val libroItemViewWriter: TextView = itemView.findViewById(R.id.textWriter)
         private val libroItemViewId: TextView = itemView.findViewById(R.id.textId)
         private val button = itemView.findViewById<Button>(R.id.btnDelete)
+        private val buttonEdit = itemView.findViewById<Button>(R.id.btnEdit)
         var listener: BookListener? = null
 
         fun bind(libro: Libro, listener: BookListener) {
             libroItemViewName.text = libro.nombre
             libroItemViewWriter.text = libro.escritor
             libroItemViewId.text = libro.id
-            libroName = getLibro(libro.nombre)
+            libroName = libroItemViewName.text.toString()
+            libroEdit = libro
             button.setOnClickListener {
-                onClick(itemView)
+                listener.onDelete(itemView,adapterPosition,libro.nombre)
             }
-
+            buttonEdit.setOnClickListener {
+                listener.onEdit(itemView,adapterPosition,libro)
+            }
         }
 
         init {
             this.listener = listener
         }
 
-        fun getLibro(id: String): String {
-            return id
-        }
 
         companion object {
             fun create(parent: ViewGroup, listener: BookListener): BookListAdapter.LibroViewHolder {
@@ -66,10 +67,14 @@ class BookListAdapter(var listener: BookListener) :
         }
 
         override fun onClick(v: View?) {
-            this.listener?.onDelete(v!!, adapterPosition, libroName)
+            this.listener?.onDelete(v!!,adapterPosition,libroName)
+            this.listener?.onEdit(v!!,adapterPosition, libroEdit!!)
 
         }
+    }
 
+    interface ItemClicked{
+        fun updateClick(libro:Libro)
     }
 
 

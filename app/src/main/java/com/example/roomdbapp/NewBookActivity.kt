@@ -7,7 +7,6 @@ import android.os.Bundle
 import android.text.TextUtils
 import android.widget.Button
 import android.widget.EditText
-import java.io.Serializable
 
 class NewBookActivity : AppCompatActivity() {
 
@@ -23,7 +22,7 @@ class NewBookActivity : AppCompatActivity() {
         editWriterView = findViewById(R.id.edit_writer)
         editIdView = findViewById(R.id.edit_id)
 
-        val button = findViewById<Button>(R.id.button_save)
+        val button = findViewById<Button>(R.id.button_edit)
         button.setOnClickListener {
             val replyIntent = Intent()
             if (TextUtils.isEmpty(editNameView.text)

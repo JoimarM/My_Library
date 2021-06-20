@@ -22,6 +22,10 @@ class LibroViewModel(private val repository: LibroRepository) : ViewModel() {
     fun delete(writer: String) = viewModelScope.launch {
         repository.delete(writer)
     }
+
+    fun update(libro: Libro)= viewModelScope.launch {
+        repository.edit(libro)
+    }
 }
 
 class LibroViewModelFactory(private val repository: LibroRepository) : ViewModelProvider.Factory {
